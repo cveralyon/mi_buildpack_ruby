@@ -21,6 +21,10 @@ cd ruby-$RUBY_VERSION
 make
 make install
 
+# Instalar Bundler
+echo "-----> Instalando Bundler"
+$INSTALL_DIR/bin/gem install bundler
+
 # Agregar Ruby al PATH
 echo "export PATH=\"$INSTALL_DIR/bin:\$PATH\"" >> $BUILD_DIR/.profile.d/ruby.sh
 
