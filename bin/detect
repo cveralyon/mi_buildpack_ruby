@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "Ruby"
+exit 0

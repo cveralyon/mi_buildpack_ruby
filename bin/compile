@@ -1,0 +1,28 @@
+#!/bin/sh
+echo "-----> Instalando Ruby 2.7.0"
+# Aquí vendría la lógica para instalar Ruby 2.7.0
+#!/bin/sh
+
+BUILD_DIR=$1
+
+echo "-----> Instalando Ruby 2.7.0"
+
+RUBY_VERSION="2.7.0"
+INSTALL_DIR="$BUILD_DIR/.heroku/ruby"
+
+mkdir -p $INSTALL_DIR
+
+# Descargar y descomprimir Ruby
+curl -L "https://cache.ruby-lang.org/pub/ruby/2.7/ruby-$RUBY_VERSION.tar.gz" | tar xz
+cd ruby-$RUBY_VERSION
+
+# Compilar e instalar
+./configure --prefix=$INSTALL_DIR --disable-install-doc
+make
+make install
+
+# Agregar Ruby al PATH
+echo "export PATH=\"$INSTALL_DIR/bin:\$PATH\"" >> $BUILD_DIR/.profile.d/ruby.sh
+
+cd ..
+rm -rf ruby-$RUBY_VERSION
